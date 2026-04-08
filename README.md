@@ -45,6 +45,11 @@ python3 ~/clawd/skills/token-guardian/scripts/skip_manager.py add <cron_id> --re
 python3 ~/clawd/skills/token-guardian/scripts/skip_manager.py remove <cron_id>
 ```
 
+## Requirements
+- OpenClaw 2026.4.x+
+- Agent/tool access to `session_status`, `sessions_list`, `exec`
+- Runtime can run `openclaw cron list --json`
+
 ## OpenClaw 整合前提
 這個 skill 預設依賴以下 OpenClaw 能力：
 - `session_status`
@@ -76,3 +81,18 @@ references/guardian-policy.json
 - 補 `.gitignore`（忽略 `__pycache__` / 本機輸出）
 - 補範例輸出與 doctor/check 模式
 - 若要讓其他人更容易部署，可再補一份 `docs/INSTALL.md`
+
+
+## Post-install check
+安裝完成後可用以下方式確認：
+
+```bash
+openclaw skills info token-guardian
+python3 ~/clawd/skills/token-guardian/scripts/audit_cron.py
+python3 ~/clawd/skills/token-guardian/scripts/skip_manager.py list
+```
+
+預期：
+- skill 能被 OpenClaw 辨識
+- `audit_cron.py` 可輸出 JSON 結果
+- `skip_manager.py list` 可正常列出規則

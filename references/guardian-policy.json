@@ -6,10 +6,7 @@
     "danger": 80,
     "critical": 90
   },
-  "skipCronIds": [
-    "e63763d4-b461-4d3e-a899-876d1cffb396",
-    "5a77f937-c16d-44d5-9333-48ab93f2b16a"
-  ],
+  "skipCronIds": [],
   "skipRules": [
     {
       "cronId": "example-cron-id",
