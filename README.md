@@ -96,3 +96,22 @@ python3 ~/clawd/skills/token-guardian/scripts/skip_manager.py list
 - skill 能被 OpenClaw 辨識
 - `audit_cron.py` 可輸出 JSON 結果
 - `skip_manager.py list` 可正常列出規則
+
+
+## 報告解讀
+- `total` / `enabled` / `disabled` 指的是 **cron job 筆數**，不是執行次數。
+- 一個每小時執行一次的 cron，仍然只算 1 個 job。
+- `info` 代表資訊級提醒，不等於高風險。
+
+
+## 建議排程
+
+### 2H 巡檢（只在高風險時提醒）
+建議使用 isolated cron，每 2 小時跑一次 Token Guardian。若結果只有資訊級提醒，則不主動通知；只有在出現高風險項目時才提醒使用者。
+
+### 夜間摘要（每日一次）
+建議每天 22:30 執行一次摘要，回報：
+- 高風險 cron
+- 資訊級提醒
+- 啟用/停用 job 統計
+- 建議隔天優先處理項目
