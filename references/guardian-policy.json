@@ -1,0 +1,21 @@
+{
+  "safetyLevel": "balanced",
+  "thresholds": {
+    "info": 50,
+    "warn": 60,
+    "danger": 80,
+    "critical": 90
+  },
+  "skipCronIds": [
+    "e63763d4-b461-4d3e-a899-876d1cffb396",
+    "5a77f937-c16d-44d5-9333-48ab93f2b16a"
+  ],
+  "skipRules": [
+    {
+      "cronId": "example-cron-id",
+      "reason": "Customer accepted high frequency monitoring",
+      "expiresAt": "2026-12-31T23:59:59+08:00",
+      "enabled": false
+    }
+  ]
+}
