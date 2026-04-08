@@ -115,3 +115,35 @@ python3 ~/clawd/skills/token-guardian/scripts/skip_manager.py list
 - 資訊級提醒
 - 啟用/停用 job 統計
 - 建議隔天優先處理項目
+
+
+## Compatibility / Requirements
+- 建議 OpenClaw `2026.4.x+`
+- 需要可用的 `openclaw` CLI
+- 建議 agent 可使用：`exec`、`session_status`、`sessions_list`
+- 建議 cron 使用 `sessionTarget=isolated`
+- 若裝置 approval 較嚴，建議採「只有異常才通知」模式
+
+## Portability Notes
+Token Guardian 在不同裝置上可能受到以下因素影響：
+- tool allowlist / whitelist
+- approval policy
+- OpenClaw CLI JSON schema
+- session / cron store 路徑
+
+建議先執行：
+```bash
+python3 scripts/doctor.py
+```
+
+## Configurable Paths
+可使用環境變數覆蓋預設 session store 路徑：
+```bash
+TOKEN_GUARDIAN_SESSION_STORE=/path/to/sessions.json python3 scripts/audit_usage.py
+```
+
+## Deployment Notes
+- 建議 2H 巡檢使用 `isolated`
+- 建議設計為「只有高風險才通知」
+- 若裝置 approval 較嚴，不要讓 cron 依賴高風險工具鏈
+- `total / enabled / disabled` 為 job 筆數，不是執行次數
